@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A letter for you</title>
+<meta name="robots" content="noindex, nofollow">
+
+<!-- ════════════════════════════════════════════════════════════════
+     HOW TO USE THIS FILE
+
+     1. Everything you need to change is in the CONFIG block at the
+        bottom of this file (search for "START EDITING HERE").
+     2. Put this file in a GitHub repo named exactly: index.html
+     3. Repo → Settings → Pages → Source: "Deploy from a branch" →
+        branch "main", folder "/ (root)" → Save.
+     4. Your link appears in a minute or two:
+        https://YOURUSERNAME.github.io/REPONAME/
+     5. For photos: make a folder called "photos" next to this file,
+        drop your images in, then use src: "photos/whatever.jpg"
+
+     A NOTE ON THE PASSWORD: this keeps a casual visitor out, nothing
+     more. GitHub Pages is free only on public repos, so anyone who
+     knows the repo URL can read this file and see both the password
+     and the letter. It's a doorbell, not a lock.
+     ════════════════════════════════════════════════════════════════ -->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%8C%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Special+Elite&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --desk:        #1c1b2a;   /* dark room behind the paper */
+  --desk-2:      #2a2536;
+  --paper:       #f4ecd8;   /* aged ivory */
+  --paper-shade: #e6d9bd;
+  --ink:         #33314e;   /* faded indigo ink */
+  --ink-soft:    #6b6684;
+  --rose:        #a8555e;   /* dried rose */
+  --tape:        #d8c07a;   /* mustard washi */
+  --thread:      #b9a77e;
+
+  --type-face: "Special Elite", "Courier New", Courier, monospace;
+  --hand-face: "Caveat", "Segoe Script", cursive;
+  --serif-face: "Cormorant Garamond", Georgia, serif;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  font-family:var(--type-face);
+  color:var(--ink);
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--desk-2) 0%, var(--desk) 62%, #14131f 100%);
+  background-attachment:fixed;
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:clamp(18px,5vw,56px) 16px 96px;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── shared paper surface ───────────────────────────────────── */
+.paper{
+  position:relative;
+  width:100%;
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(168,120,60,.09) 0, transparent 26%),
+    radial-gradient(circle at 82% 78%, rgba(168,120,60,.08) 0, transparent 24%),
+    radial-gradient(circle at 60% 40%, rgba(120,90,50,.05) 0, transparent 38%),
+    repeating-linear-gradient(0deg, rgba(120,95,60,.035) 0 1px, transparent 1px 3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.5) inset,
+    0 26px 60px -24px rgba(0,0,0,.72),
+    0 2px 6px rgba(0,0,0,.35);
+  border-radius:2px 3px 2px 3px;
+}
+/* torn-ish soft edge */
+.paper::after{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  box-shadow:0 0 0 1px rgba(90,70,40,.14) inset;
+}
+
+/* ── washi tape ─────────────────────────────────────────────── */
+.tape{
+  position:absolute;
+  width:104px; height:30px;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.22) 0 6px, transparent 6px 12px),
+    var(--tape);
+  opacity:.82;
+  box-shadow:0 2px 5px rgba(0,0,0,.28);
+  clip-path:polygon(2% 8%,98% 0,100% 88%,0 100%);
+}
+.tape.tl{ top:-14px; left:-18px; transform:rotate(-24deg); }
+.tape.tr{ top:-16px; right:-16px; transform:rotate(18deg); background-color:var(--rose); }
+.tape.bl{ bottom:-14px; left:12%; transform:rotate(7deg); }
+
+/* ═══ 1. THE DOOR ═══════════════════════════════════════════ */
+#gate{
+  margin:auto;
+  max-width:400px;
+  padding:clamp(36px,10vw,52px) clamp(22px,7vw,34px) clamp(30px,7vw,40px);
+  text-align:center;
+  animation:settle .7s ease-out both;
+}
+@keyframes settle{
+  from{ opacity:0; transform:translateY(14px) rotate(-1.4deg); }
+  to  { opacity:1; transform:translateY(0) rotate(-.7deg); }
+}
+#gate{ transform:rotate(-.7deg); }
+
+.seal{
+  width:66px; height:66px;
+  margin:0 auto 20px;
+  border-radius:50%;
+  background:radial-gradient(circle at 34% 30%, #c4707a, var(--rose) 58%, #7e3a44);
+  box-shadow:0 4px 10px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.35) inset;
+  display:grid; place-items:center;
+  font-family:var(--hand-face);
+  font-size:30px; color:#f8e9d8;
+  transform:rotate(-8deg);
+}
+
+#gate h1{
+  font-family:var(--hand-face);
+  font-weight:600;
+  font-size:clamp(30px,7vw,38px);
+  line-height:1.08;
+  margin:0 0 6px;
+  color:var(--ink);
+}
+.gate-sub{
+  font-family:var(--serif-face);
+  font-style:italic;
+  font-size:16px;
+  color:var(--ink-soft);
+  margin:0 0 26px;
+}
+
+#gate form{ display:flex; flex-direction:column; gap:12px; }
+
+#pw{
+  font-family:var(--type-face);
+  font-size:17px;
+  letter-spacing:.14em;
+  text-align:center;
+  color:var(--ink);
+  background:transparent;
+  border:0;
+  border-bottom:1.5px dashed rgba(51,49,78,.45);
+  padding:11px 6px;
+  outline:none;
+  transition:border-color .2s;
+}
+#pw::placeholder{ color:rgba(107,102,132,.55); letter-spacing:.08em; }
+#pw:focus{ border-bottom-color:var(--rose); border-bottom-style:solid; }
+
+#enter{
+  font-family:var(--type-face);
+  font-size:15px;
+  letter-spacing:.06em;
+  color:var(--paper);
+  background:var(--ink);
+  border:0;
+  padding:13px 18px;
+  cursor:pointer;
+  box-shadow:3px 3px 0 rgba(51,49,78,.28);
+  transition:transform .12s, box-shadow .12s, background .2s;
+}
+#enter:hover{ background:var(--rose); }
+#enter:active{ transform:translate(3px,3px); box-shadow:0 0 0 rgba(0,0,0,0); }
+#enter:focus-visible, #pw:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; }
+
+.hint{
+  font-family:var(--hand-face);
+  font-size:18px;
+  color:var(--ink-soft);
+  margin:20px 0 0;
+  transform:rotate(-1.2deg);
+}
+.err{
+  font-family:var(--hand-face);
+  font-size:19px;
+  color:var(--rose);
+  min-height:24px;
+  margin:12px 0 0;
+}
+.shake{ animation:shake .42s; }
+@keyframes shake{
+  10%,90%{ transform:translateX(-2px) rotate(-.7deg); }
+  20%,80%{ transform:translateX(4px) rotate(-.7deg); }
+  30%,50%,70%{ transform:translateX(-7px) rotate(-.7deg); }
+  40%,60%{ transform:translateX(7px) rotate(-.7deg); }
+}
+
+/* ═══ 2. THE LETTER ════════════════════════════════════════ */
+#letter[hidden]{ display:none; }
+#letter{
+  max-width:640px;
+  padding:clamp(32px,6vw,60px) clamp(22px,6vw,58px) clamp(60px,9vw,88px);
+  animation:unfold .9s cubic-bezier(.2,.7,.25,1) both;
+}
+@keyframes unfold{
+  from{ opacity:0; transform:translateY(22px) scale(.985); }
+  to  { opacity:1; transform:none; }
+}
+
+.letterhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:14px;
+  border-bottom:1px solid rgba(90,70,40,.22);
+  padding-bottom:14px;
+  margin-bottom:34px;
+}
+.letterhead .place{
+  font-family:var(--hand-face);
+  font-size:21px;
+  color:var(--ink-soft);
+  transform:rotate(-1deg);
+}
+.letterhead .date{
+  font-family:var(--type-face);
+  font-size:12px;
+  letter-spacing:.1em;
+  color:var(--ink-soft);
+}
+
+/* typed text */
+.stream > *{ margin:0 0 1.35em; }
+.line{
+  font-family:var(--type-face);
+  font-size:clamp(15px,2.4vw,16.5px);
+  line-height:1.95;
+  letter-spacing:.005em;
+  max-width:62ch;
+  white-space:pre-wrap;
+}
+.line .em{ color:var(--rose); }
+h2.line{
+  font-family:var(--hand-face);
+  font-size:clamp(27px,6vw,34px);
+  line-height:1.2;
+  letter-spacing:0;
+  color:var(--ink);
+}
+
+/* the caret */
+.caret{
+  display:inline-block;
+  width:.58em; height:1.02em;
+  margin-left:1px;
+  vertical-align:-.16em;
+  background:var(--rose);
+  animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{ 50%{ opacity:0; } }
+
+/* margin note on torn paper */
+.note{
+  font-family:var(--hand-face);
+  font-size:21px;
+  line-height:1.45;
+  color:#4a4363;
+  background:#f7e9a8;
+  background-image:linear-gradient(175deg, rgba(255,255,255,.5), transparent 40%);
+  padding:20px 22px 24px;
+  width:min(300px,86%);
+  margin:0 0 2.1em auto;
+  transform:rotate(1.6deg);
+  box-shadow:0 10px 20px -12px rgba(0,0,0,.6);
+  clip-path:polygon(0 2%,100% 0,99% 97%,2% 100%);
+}
+.note.left{ margin:0 auto 2.1em 0; transform:rotate(-2deg); background:#e8d9f0; }
+
+/* photos */
+.polaroid{
+  position:relative;
+  width:min(300px,78%);
+  margin:2.4em auto 3em;
+  padding:13px 13px 46px;
+  background:#fdfaf2;
+  box-shadow:0 16px 30px -16px rgba(0,0,0,.75), 0 2px 4px rgba(0,0,0,.25);
+  opacity:0;
+  transform:translateY(16px) rotate(var(--tilt,-2deg));
+  transition:opacity .75s ease, transform .75s cubic-bezier(.2,.8,.3,1);
+}
+.polaroid.in{ opacity:1; transform:translateY(0) rotate(var(--tilt,-2deg)); }
+.polaroid.right{ margin-right:2%; margin-left:auto; }
+.polaroid.left{ margin-left:2%; margin-right:auto; }
+.polaroid img{
+  display:block; width:100%; height:auto;
+  background:var(--paper-shade);
+}
+.polaroid .ph{
+  aspect-ratio:4/5;
+  display:grid; place-items:center;
+  text-align:center;
+  padding:16px;
+  background:
+    repeating-linear-gradient(45deg, rgba(51,49,78,.05) 0 10px, transparent 10px 20px),
+    var(--paper-shade);
+  border:1px dashed rgba(51,49,78,.35);
+  font-family:var(--type-face);
+  font-size:12px;
+  line-height:1.7;
+  letter-spacing:.04em;
+  color:var(--ink-soft);
+}
+.polaroid .cap{
+  font-family:var(--hand-face);
+  font-size:20px;
+  color:var(--ink-soft);
+  text-align:center;
+  margin:12px 0 0;
+  transform:rotate(-.8deg);
+}
+
+/* margin decorations — transparent PNGs taped into the gutter.
+   They sit outside the text column and take up no vertical space. */
+.margin{
+  position:relative;
+  height:0;
+  margin:0 !important;
+}
+.margin .art{
+  position:absolute;
+  top:-26px;
+  width:var(--w,140px);
+  transform:rotate(var(--tilt,-6deg)) scale(.82);
+  opacity:0;
+  transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.3,1);
+  filter:drop-shadow(0 10px 14px rgba(0,0,0,.45));
+}
+.margin.in .art{ opacity:1; transform:rotate(var(--tilt,-6deg)) scale(1); }
+.margin.right .art{ left:100%; margin-left:-46px; }
+.margin.left  .art{ right:100%; margin-right:-46px; }
+.margin .art img{ display:block; width:100%; height:auto; }
+
+/* framed version, for a little polaroid pinned in the margin */
+.margin .art.framed{
+  background:#fdfaf2;
+  padding:9px 9px 30px;
+  box-shadow:0 14px 26px -14px rgba(0,0,0,.8);
+}
+.margin .art.framed .cap{
+  font-family:var(--hand-face);
+  font-size:16px;
+  color:var(--ink-soft);
+  text-align:center;
+  margin:8px 0 0;
+}
+/* placeholder until you drop a real file in */
+.margin .ph-art{
+  aspect-ratio:1/1;
+  display:grid; place-items:center;
+  text-align:center;
+  padding:10px;
+  border:1px dashed rgba(244,236,216,.55);
+  border-radius:50%;
+  background:rgba(51,49,78,.35);
+  font-family:var(--type-face);
+  font-size:10px;
+  line-height:1.6;
+  color:rgba(244,236,216,.8);
+}
+.margin .art.framed .ph-art{ border-radius:0; background:var(--paper-shade); color:var(--ink-soft); }
+
+/* not enough room beside the paper — bring them inline instead */
+@media (max-width:900px){
+  .margin{ height:auto; margin:1.4em 0 2em !important; text-align:center; }
+  .margin .art{ position:static; display:inline-block; width:min(var(--w,140px),46%); top:auto; }
+  .margin.right .art, .margin.left .art{ margin:0; }
+}
+
+/* sticker row */
+.stickers{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:clamp(14px,4vw,30px);
+  margin:.6em 0 2.4em;
+}
+.stickers span{
+  font-size:clamp(30px,8vw,40px);
+  line-height:1;
+  display:inline-block;
+  opacity:0;
+  transform:scale(.6) rotate(var(--r,0deg));
+  transition:opacity .5s ease, transform .5s cubic-bezier(.3,1.5,.5,1);
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.28));
+}
+.stickers.in span{ opacity:1; transform:scale(1) rotate(var(--r,0deg)); }
+
+/* stitched divider */
+.divider{
+  display:block;
+  width:170px;
+  margin:1.4em auto 2.6em;
+  opacity:0;
+  transition:opacity .8s ease;
+}
+.divider.in{ opacity:.75; }
+
+/* pressed flower / corner doodles */
+.corner{
+  position:absolute;
+  width:74px; height:74px;
+  opacity:.5;
+  pointer-events:none;
+}
+.corner.a{ top:16px; right:14px; transform:rotate(12deg); }
+.corner.b{ bottom:18px; left:14px; transform:rotate(-165deg); }
+
+/* signature */
+.signoff{
+  margin-top:2.6em;
+  text-align:right;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity 1.1s ease, transform 1.1s ease;
+}
+.signoff.in{ opacity:1; transform:none; }
+.signoff .yours{
+  font-family:var(--type-face);
+  font-size:14px;
+  letter-spacing:.08em;
+  color:var(--ink-soft);
+  margin:0 0 4px;
+}
+.signoff .name{
+  font-family:var(--hand-face);
+  font-size:clamp(34px,9vw,46px);
+  color:var(--rose);
+  transform:rotate(-2.5deg);
+  display:inline-block;
+  margin:0;
+}
+
+/* skip / replay */
+.controls{
+  position:fixed;
+  right:max(14px, env(safe-area-inset-right));
+  bottom:max(14px, env(safe-area-inset-bottom));
+  display:flex; gap:8px;
+  z-index:5;
+}
+.controls button{
+  font-family:var(--type-face);
+  font-size:11.5px;
+  letter-spacing:.08em;
+  color:var(--paper);
+  background:rgba(51,49,78,.72);
+  border:1px solid rgba(244,236,216,.22);
+  backdrop-filter:blur(4px);
+  padding:9px 13px;
+  cursor:pointer;
+  transition:background .2s;
+}
+.controls button:hover{ background:var(--rose); }
+.controls button:focus-visible{ outline:2px solid var(--tape); outline-offset:2px; }
+.controls[hidden]{ display:none; }
+
+/* falling hearts */
+.sky{ position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+.petal{
+  position:absolute;
+  top:-6vh;
+  animation:fall linear infinite;
+  opacity:.34;
+}
+.petal i{
+  display:block;
+  width:9px; height:9px;
+  background:var(--rose);
+  transform:rotate(-45deg);
+  position:relative;
+}
+.petal i::before, .petal i::after{
+  content:""; position:absolute;
+  width:9px; height:9px;
+  background:inherit;
+  border-radius:50%;
+}
+.petal i::before{ top:-4.5px; left:0; }
+.petal i::after{ top:0; left:4.5px; }
+
+.petal.star i{
+  width:12px; height:12px;
+  background:var(--tape);
+  border-radius:0;
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  animation:twinkle 2.6s ease-in-out infinite;
+}
+.petal.star i::before, .petal.star i::after{ content:none; }
+
+@keyframes twinkle{
+  0%,100%{ opacity:.25; }
+  50%{ opacity:1; }
+}
+@keyframes fall{
+  0%  { transform:translateY(0) translateX(0) rotate(0deg); }
+  100%{ transform:translateY(112vh) translateX(var(--drift,30px)) rotate(260deg); }
+}
+
+#gate, #letter{ position:relative; z-index:1; }
+
+@media (max-width:480px){
+  .note{ width:100%; }
+  .polaroid{ width:86%; }
+  .letterhead{ flex-direction:column; align-items:flex-start; gap:4px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation-duration:.01ms !important; animation-iteration-count:1 !important;
+     transition-duration:.01ms !important; }
+  .sky{ display:none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sky" aria-hidden="true"></div>
+
+<!-- ── the door ───────────────────────────────────────────── -->
+<section id="gate" class="paper">
+  <span class="tape tl"></span>
+  <span class="tape tr"></span>
+  <div class="seal">✉</div>
+  <h1 id="gateTitle">Something for you</h1>
+  <p class="gate-sub" id="gateSub">Locked, but you already know the word.</p>
+  <form id="gateForm" autocomplete="off">
+    <label for="pw" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Password</label>
+    <input id="pw" type="password" placeholder="type it here" autocapitalize="off" spellcheck="false">
+    <button id="enter" type="submit">Open the letter</button>
+  </form>
+  <p class="err" id="err" role="status" aria-live="polite"></p>
+  <p class="hint" id="hint"></p>
+</section>
+
+<!-- ── the letter ─────────────────────────────────────────── -->
+<article id="letter" class="paper" hidden>
+  <span class="tape bl"></span>
+
+  <svg class="corner a" viewBox="0 0 100 100" fill="none" stroke="#a8555e" stroke-width="2" aria-hidden="true">
+    <path d="M50 88c0-24-28-30-28-52a14 14 0 0128-6 14 14 0 0128 6c0 22-28 28-28 52z" opacity=".55"/>
+    <path d="M50 88V40M50 56c-9-4-14-10-15-18M50 62c8-3 13-9 14-17" stroke-linecap="round" opacity=".8"/>
+  </svg>
+  <svg class="corner b" viewBox="0 0 100 100" fill="none" stroke="#b9a77e" stroke-width="2" aria-hidden="true">
+    <circle cx="50" cy="40" r="9"/>
+    <path d="M50 49v40M50 62c-10 0-17-6-19-15 10-2 17 3 19 15zM50 70c10 1 17-5 19-14-10-2-17 2-19 14z" stroke-linecap="round"/>
+  </svg>
+
+  <header class="letterhead">
+    <span class="place" id="place"></span>
+    <span class="date" id="date"></span>
+  </header>
+
+  <div class="stream" id="stream"></div>
+
+  <div class="signoff" id="signoff">
+    <p class="yours" id="yours"></p>
+    <p class="name" id="signature"></p>
+  </div>
+</article>
+
+<div class="controls" id="controls" hidden>
+  <button id="music" type="button" hidden>Play music</button>
+  <button id="skip" type="button">Show it all</button>
+  <button id="replay" type="button">Read again</button>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   START EDITING HERE
+   ══════════════════════════════════════════════════════════════ */
+
+const CONFIG = {
+
+  /* ── the door ── */
+  password:   "penguin",              // not case sensitive
+  gateTitle:  "Something for you",
+  gateSubtitle: "Locked, but you already know the word.",
+  hint:       "hint: your keychain is a...",   // set to "" to hide
+  wrongMessage: "Not it. Try again?",
+
+  /* ── the letter header ── */
+  place:      "written at 2am, somewhere",
+  dateLine:   "twenty twenty six",
+
+  /* ── the sign-off ── */
+  yours:      "Yours, always,",
+  signature:  "Lindsey",
+
+  /* ── typing feel ── */
+  typeSpeed:  15,     // ms per character. lower = faster
+  pauseAfterParagraph: 700,
+
+  /* ── background music ──
+     Put your file in a folder called "music" next to this file, then
+     set src to "music/yoursong.mp3". Leave src as "" for no music.
+     It starts when the letter is unlocked (browsers only allow sound
+     after a click, which is exactly what opening the letter is).
+     Keep the mp3 under ~10 MB — GitHub Pages is slow with big files. */
+  music: {
+    src:    "",       // e.g. "music/our-song.mp3"
+    volume: 0.35,     // 0 to 1
+  },
+
+  /* ── falling background ──
+     "hearts", "stars", or "none" */
+  sky: "stars",
+
+};
+
+
+/* ══════════════════════════════════════════════════════════════
+   THE LETTER
+
+   The page plays through this list top to bottom. Mix and match
+   these six blocks in any order, as many times as you like:
+
+   { t:"h",       text:"Big handwritten heading" }
+   { t:"p",       text:"A typed paragraph. Wrap words in *stars*
+                        to tint them rose." }
+   { t:"note",    text:"A sticky note in the margin", side:"right" }
+   { t:"photo",   src:"photos/us.jpg", caption:"that day",
+                  tilt:-3, side:"center" }
+   { t:"stickers",items:["🌙","✨","🕊️"] }
+   { t:"margin",  src:"stickers/flower.png", side:"right",
+                  width:150, tilt:-8, framed:false, caption:"" }
+   { t:"divider" }
+
+   photo:  a big taped polaroid in the middle of the letter.
+           leave src as "" to show a dashed placeholder box.
+           side can be "left", "right" or "center".
+           tilt is the rotation in degrees, try -4 to 4.
+
+   margin: a decoration pinned in the gutter beside the text — meant
+           for transparent PNGs (pressed flowers, doodles, ribbons,
+           cut-out photos). Put them in a folder called "stickers".
+           width is in pixels, 90–180 works well.
+           framed:true wraps it in a small polaroid border instead,
+           which is nice for an actual photo in the margin.
+           On phones these drop inline between the paragraphs.
+   ══════════════════════════════════════════════════════════════ */
+
+const LETTER = [
+
+  { t:"h", text:"My dearest," },
+
+  { t:"p", text:"[ This is where your first paragraph goes. Delete this whole block and write whatever you want — it will type itself out one character at a time, exactly like this. ]" },
+
+  { t:"margin", src:"", side:"right", width:140, tilt:-9 },
+
+  { t:"p", text:"[ Second paragraph. You can put *a few words in stars* and they'll come out in rose ink. Keep each paragraph its own block in the list below. ]" },
+
+  { t:"photo", src:"", caption:"[ caption goes here ]", tilt:-3, side:"center" },
+
+  { t:"p", text:"[ Third paragraph. Say the thing you keep almost saying. ]" },
+
+  { t:"note", text:"[ a small note squeezed into the margin ]", side:"right" },
+
+  { t:"stickers", items:["🌙","✨","🕊️","🌿"] },
+
+  { t:"p", text:"[ Fourth paragraph. ]" },
+
+  { t:"margin", src:"", side:"left", width:130, tilt:7, framed:true, caption:"[ tiny one ]" },
+
+  { t:"divider" },
+
+  { t:"photo", src:"", caption:"[ another one ]", tilt:2.5, side:"left" },
+
+  { t:"p", text:"[ Last paragraph. End it however you want to end it. ]" },
+
+];
+
+
+/* ══════════════════════════════════════════════════════════════
+   NOTHING BELOW HERE NEEDS TO BE TOUCHED
+   ══════════════════════════════════════════════════════════════ */
+
+const $ = id => document.getElementById(id);
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---- fill in the static copy ---- */
+$("gateTitle").textContent = CONFIG.gateTitle;
+$("gateSub").textContent   = CONFIG.gateSubtitle;
+$("hint").textContent      = CONFIG.hint || "";
+$("place").textContent     = CONFIG.place;
+$("date").textContent      = CONFIG.dateLine;
+$("yours").textContent     = CONFIG.yours;
+$("signature").textContent = CONFIG.signature;
+document.title            = CONFIG.gateTitle;
+
+/* ---- falling hearts ---- */
+(function sky(){
+  if (reduced || CONFIG.sky === "none") return;
+  const isStar = CONFIG.sky === "stars";
+  const skyEl = document.querySelector(".sky");
+  for (let i = 0; i < 14; i++){
+    const p = document.createElement("span");
+    p.className = "petal" + (isStar ? " star" : "");
+    p.style.left = (Math.random() * 100) + "vw";
+    p.style.animationDuration = (16 + Math.random() * 16) + "s";
+    p.style.animationDelay = (-Math.random() * 30) + "s";
+    p.style.setProperty("--drift", (Math.random() * 160 - 80) + "px");
+    p.style.transform = "scale(" + (0.6 + Math.random() * 0.9) + ")";
+    p.innerHTML = "<i></i>";
+    if (isStar) p.querySelector("i").style.animationDelay = (-Math.random() * 2.6) + "s";
+    skyEl.appendChild(p);
+  }
+})();
+
+/* ---- the door ---- */
+const gate = $("gate"), err = $("err");
+
+$("gateForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const given = $("pw").value.trim().toLowerCase();
+  if (given === CONFIG.password.trim().toLowerCase()){
+    try { sessionStorage.setItem("opened", "1"); } catch(_){}
+    open();
+  } else {
+    err.textContent = CONFIG.wrongMessage;
+    gate.classList.remove("shake");
+    void gate.offsetWidth;
+    gate.classList.add("shake");
+    $("pw").select();
+  }
+});
+
+let opened = false;
+try { opened = sessionStorage.getItem("opened") === "1"; } catch(_){}
+if (opened) open();
+
+function open(){
+  gate.style.transition = "opacity .5s ease, transform .5s ease";
+  gate.style.opacity = "0";
+  gate.style.transform = "translateY(-10px) rotate(-.7deg)";
+  setTimeout(() => {
+    gate.remove();
+    $("letter").hidden = false;
+    $("controls").hidden = false;
+    startMusic();
+    play();
+  }, reduced ? 0 : 480);
+}
+
+/* ---- the typewriter ---- */
+let run = 0, skipping = false;
+const stream = $("stream");
+const caret = document.createElement("span");
+caret.className = "caret";
+
+const wait = ms => new Promise(r => setTimeout(r, skipping || reduced ? 0 : ms));
+
+/* split "hello *you*" into [{text:"hello ",em:false},{text:"you",em:true}] */
+function segments(text){
+  return text.split(/(\*[^*]+\*)/g).filter(Boolean).map(chunk =>
+    chunk.startsWith("*") && chunk.endsWith("*") && chunk.length > 2
+      ? { text: chunk.slice(1, -1), em: true }
+      : { text: chunk, em: false }
+  );
+}
+
+async function type(el, text, id){
+  for (const seg of segments(text)){
+    const span = document.createElement("span");
+    if (seg.em) span.className = "em";
+    el.insertBefore(span, caret);
+    if (skipping || reduced){
+      span.textContent = seg.text;
+      continue;
+    }
+    const chars = Array.from(seg.text);
+    for (let i = 0; i < chars.length; i++){
+      if (id !== run) return;
+      const ch = chars[i];
+      span.append(ch);
+      if (skipping){ span.append(chars.slice(i + 1).join("")); break; }
+      const pause = ".!?".includes(ch) ? CONFIG.typeSpeed * 9
+                  : ",;:—".includes(ch) ? CONFIG.typeSpeed * 4
+                  : CONFIG.typeSpeed * (0.72 + Math.random() * 0.62);
+      await wait(pause);
+    }
+  }
+}
+
+function reveal(el){
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("in")));
+}
+
+async function play(){
+  const id = ++run;
+  skipping = false;
+  stream.innerHTML = "";
+  $("signoff").classList.remove("in");
+
+  for (const item of LETTER){
+    if (id !== run) return;
+
+    if (item.t === "p" || item.t === "h"){
+      const el = document.createElement(item.t === "h" ? "h2" : "p");
+      el.className = "line";
+      el.appendChild(caret);
+      stream.appendChild(el);
+      await type(el, item.text, id);
+      await wait(CONFIG.pauseAfterParagraph);
+    }
+
+    else if (item.t === "note"){
+      const el = document.createElement("div");
+      el.className = "note" + (item.side === "left" ? " left" : "");
+      el.appendChild(caret);
+      stream.appendChild(el);
+      await type(el, item.text, id);
+      await wait(CONFIG.pauseAfterParagraph);
+    }
+
+    else if (item.t === "photo"){
+      const fig = document.createElement("figure");
+      fig.className = "polaroid " + (item.side === "left" ? "left" : item.side === "right" ? "right" : "");
+      fig.style.setProperty("--tilt", (item.tilt ?? -2) + "deg");
+      const inner = item.src
+        ? '<img src="' + item.src + '" alt="' + (item.caption || "") + '">'
+        : '<div class="ph">photo goes here<br>swap src:"" for<br>src:"photos/name.jpg"</div>';
+      fig.innerHTML = inner + (item.caption ? '<figcaption class="cap"></figcaption>' : "");
+      if (item.caption) fig.querySelector(".cap").textContent = item.caption;
+      stream.appendChild(fig);
+      reveal(fig);
+      await wait(900);
+    }
+
+    else if (item.t === "margin"){
+      const slot = document.createElement("div");
+      slot.className = "margin " + (item.side === "left" ? "left" : "right");
+      slot.style.setProperty("--w", (item.width || 140) + "px");
+      slot.style.setProperty("--tilt", (item.tilt ?? -6) + "deg");
+      const art = document.createElement("div");
+      art.className = "art" + (item.framed ? " framed" : "");
+      art.innerHTML = item.src
+        ? '<img src="' + item.src + '" alt="">'
+        : '<div class="ph-art">sticker<br>goes here</div>';
+      if (item.framed && item.caption){
+        const c = document.createElement("p");
+        c.className = "cap";
+        c.textContent = item.caption;
+        art.appendChild(c);
+      }
+      slot.appendChild(art);
+      stream.appendChild(slot);
+      reveal(slot);
+      await wait(320);
+    }
+
+    else if (item.t === "stickers"){
+      const row = document.createElement("div");
+      row.className = "stickers";
+      (item.items || []).forEach(s => {
+        const sp = document.createElement("span");
+        sp.textContent = s;
+        sp.style.setProperty("--r", (Math.random() * 26 - 13).toFixed(1) + "deg");
+        row.appendChild(sp);
+      });
+      stream.appendChild(row);
+      reveal(row);
+      await wait(700);
+    }
+
+    else if (item.t === "divider"){
+      const d = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      d.setAttribute("class", "divider");
+      d.setAttribute("viewBox", "0 0 170 18");
+      d.innerHTML = '<path d="M2 9h58M110 9h58" stroke="#b9a77e" stroke-width="1.5" stroke-dasharray="5 5" stroke-linecap="round"/>' +
+                    '<path d="M85 16c0-4-6-5.5-6-9.5A3 3 0 0185 4a3 3 0 016 2.5c0 4-6 5.5-6 9.5z" fill="#a8555e" opacity=".8"/>';
+      stream.appendChild(d);
+      reveal(d);
+      await wait(600);
+    }
+  }
+
+  if (id !== run) return;
+  if (caret.parentNode) caret.remove();
+  await wait(500);
+  $("signoff").classList.add("in");
+}
+
+/* ---- background music ---- */
+let track = null;
+const musicBtn = $("music");
+
+if (CONFIG.music && CONFIG.music.src){
+  track = new Audio(CONFIG.music.src);
+  track.loop = true;
+  track.preload = "auto";
+  track.volume = 0;
+  musicBtn.hidden = false;
+  musicBtn.textContent = "Play music";
+}
+
+function fadeIn(){
+  if (!track) return;
+  const target = CONFIG.music.volume, step = target / 40;
+  const t = setInterval(() => {
+    track.volume = Math.min(target, track.volume + step);
+    if (track.volume >= target - 0.001) clearInterval(t);
+  }, 60);
+}
+
+function startMusic(){
+  if (!track) return;
+  track.play().then(() => {
+    fadeIn();
+    musicBtn.textContent = "Mute music";
+  }).catch(() => {
+    musicBtn.textContent = "Play music";   // browser blocked it; they can tap
+  });
+}
+
+musicBtn.addEventListener("click", () => {
+  if (!track) return;
+  if (track.paused){ startMusic(); }
+  else { track.pause(); musicBtn.textContent = "Play music"; }
+});
+
+/* ---- controls ---- */
+$("skip").addEventListener("click", () => { skipping = true; });
+$("replay").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+  play();
+});
+</script>
+</body>
+</html>
