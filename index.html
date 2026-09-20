@@ -498,7 +498,7 @@ h2.line{
 .petal i::after{ top:0; left:4.5px; }
 
 .petal.star i{
-  width:12px; height:12px;
+  width:22px; height:22px;
   background:var(--tape);
   border-radius:0;
   clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
@@ -592,32 +592,41 @@ const CONFIG = {
 
   /* ── the door ── */
   password:   "penguin",              // not case sensitive
-  gateTitle:  "Something for you",
-  gateSubtitle: "Locked, but you already know the word.",
-  hint:       "hint: your keychain is a...",   // set to "" to hide
+  gateTitle:  "a note for K",
+  gateSubtitle: "happy anniversary!!!",
+  hint:       "password hint: your keychain is a....",   // set to "" to hide
   wrongMessage: "Not it. Try again?",
 
   /* ── the letter header ── */
-  place:      "written at 2am, somewhere",
-  dateLine:   "twenty twenty six",
+  place:      "written at 2am",
+  dateLine:   "September 20, 2026",
 
   /* ── the sign-off ── */
-  yours:      "Yours, always,",
+  yours:      "Your baby forever",
   signature:  "Lindsey",
 
   /* ── typing feel ── */
-  typeSpeed:  15,     // ms per character. lower = faster
+  typeSpeed:  25,     // ms per character. lower = faster
   pauseAfterParagraph: 700,
 
   /* ── background music ──
-     Put your file in a folder called "music" next to this file, then
-     set src to "music/yoursong.mp3". Leave src as "" for no music.
-     It starts when the letter is unlocked (browsers only allow sound
-     after a click, which is exactly what opening the letter is).
-     Keep the mp3 under ~10 MB — GitHub Pages is slow with big files. */
+     Put your files in a folder called "music" next to this file,
+     then list them here in the order you want them to play. Leave
+     the list empty for no music. It starts when the letter unlocks
+     (browsers only allow sound after a click, which is exactly what
+     opening the letter is). When one song ends the next one starts
+     automatically; after the last one it loops back to the first.
+     Keep each mp3 under ~8 MB — a 128kbps export of a normal song
+     is usually 3–5 MB, which is plenty of quality for this. */
   music: {
-    src:    "",       // e.g. "music/our-song.mp3"
+    playlist: [
+       "music/supernatural.mp3",
+       "music/glue-song.mp3",
+       "music/do-me.mp3",
+       "music/need-for-speed.mp3",
+    ],
     volume: 0.35,     // 0 to 1
+    shuffle: false,   // true = random order instead of the list order
   },
 
   /* ── falling background ──
@@ -660,31 +669,43 @@ const CONFIG = {
 
 const LETTER = [
 
-  { t:"h", text:"My dearest," },
+  { t:"h", text:"to my baby," },
 
-  { t:"p", text:"[ This is where your first paragraph goes. Delete this whole block and write whatever you want — it will type itself out one character at a time, exactly like this. ]" },
+  { t:"p", text:"happy 4 years!!!! i am so happy to be where we are right now. part of me feels surprised that it's already been 4 years, but part of me also feels like it has been way longer than that." },
 
-  { t:"margin", src:"", side:"right", width:140, tilt:-9 },
-
-  { t:"p", text:"[ Second paragraph. You can put *a few words in stars* and they'll come out in rose ink. Keep each paragraph its own block in the list below. ]" },
-
-  { t:"photo", src:"", caption:"[ caption goes here ]", tilt:-3, side:"center" },
-
-  { t:"p", text:"[ Third paragraph. Say the thing you keep almost saying. ]" },
-
-  { t:"note", text:"[ a small note squeezed into the margin ]", side:"right" },
-
-  { t:"stickers", items:["🌙","✨","🕊️","🌿"] },
-
-  { t:"p", text:"[ Fourth paragraph. ]" },
-
-  { t:"margin", src:"", side:"left", width:130, tilt:7, framed:true, caption:"[ tiny one ]" },
+  { t:"margin", src:"stickers/frogy.gif", side:"right", width:140, tilt:9 },
 
   { t:"divider" },
 
-  { t:"photo", src:"", caption:"[ another one ]", tilt:2.5, side:"left" },
+  { t:"p", text:"i wish i had the vocabulary and writing skills to really express to you how much i love you. i don't know how to explain how immensely i feel this way. i think about you all the time. one of my wishes, if i had a genie, was i wish i could shrink super small just so that i could sit in your pocket and be with you all day. or i wish that we could bedrot in eachothers arms for days and days without any consequences. i love spending time with you. no matter what we are doing, i am happy just to be doing it with you." },
 
-  { t:"p", text:"[ Last paragraph. End it however you want to end it. ]" },
+  { t:"margin", src:"stickers/kuchi.png", side:"left", width:110, tilt:6 },
+
+  { t:"photo", src:"photos/photo1.jpg", caption:"i love: taking pictures with you", tilt:-3, side:"center" },
+
+  { t:"p", text:"i wanted to tell you some of the things i love about you. i hope you know all of these even if i struggle to put it into words. i love:\n   -the love you give to me\n   -your eyes (and your eyebrows and your face)\n   -the patience you give me, even when I am being difficult\n   -the way you know what i want, before i even know\n   -how you are loved by everyone you meet\n   -the way you keep me warm when it's cold\n   -how you are low-drama and communicative\n   -the way you keep me accountable, even while giving me princess treatment\n   -your hands, they turn me on\n   -the way it feels when we spoon\n   -your foodie tendencies (midnight BK??)\n   -how good you make me feel, emotionally and physically\n   -the way you send me so many instagram reels, thinking about me while you scroll (as i'm typing this, you are laughing so loud while pooping, probably watching a funny reel. so cute)\n   -how you are goofy and silly at the right times, and you make me feel comfortable enough to be goofy too" },
+
+  { t:"margin", src:"stickers/cats.gif", side:"left", width:120, tilt:11 },
+
+  { t:"note", text:"there are so many more, but this letter can't go on forever and ever.", side:"right" },
+
+  { t:"stickers", items:["🐼","🍕","🍳","🐰"] },
+
+  { t:"p", text:"thank you for sticking with me this entire time. i want to be with you forever and ever and ever and ever. Even if i died, i would still stick around loving you as a ghost (trying my best not to scare you). even in whatever afterlife comes next, i want to keep spending it with you." },
+
+  { t:"margin", src:"photos/photo3.jpg", side:"left", width:130, tilt:7, framed:true, caption:"let's keep going to booths!" },
+
+  { t:"margin", src:"stickers/chicky.gif", side:"right", width:100, tilt:-13 },
+
+  { t:"divider" },
+
+  { t:"photo", src:"photos/photo2.jpg", caption:"I love matching with you", tilt:2.5, side:"center" },
+
+  { t:"margin", src:"stickers/ducky.gif", side:"right", width:100, tilt:-13 },
+
+  { t:"divider" },
+
+  { t:"p", text:"i love you soooooooo much baby. i hope you can stay happy with me. i know things are so stressful right now with school, but i will always be there for you. WE can do anything together. happy anniversary :)" },
 
 ];
 
@@ -899,17 +920,35 @@ async function play(){
   $("signoff").classList.add("in");
 }
 
-/* ---- background music ---- */
+/* ---- background music (playlist) ---- */
 let track = null;
+let queue = [];
+let queueIndex = 0;
 const musicBtn = $("music");
 
-if (CONFIG.music && CONFIG.music.src){
-  track = new Audio(CONFIG.music.src);
-  track.loop = true;
+const rawList = (CONFIG.music && CONFIG.music.playlist) || [];
+if (rawList.length){
+  queue = rawList.slice();
+  if (CONFIG.music.shuffle){
+    for (let i = queue.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [queue[i], queue[j]] = [queue[j], queue[i]];
+    }
+  }
+  track = new Audio(queue[0]);
   track.preload = "auto";
   track.volume = 0;
   musicBtn.hidden = false;
   musicBtn.textContent = "Play music";
+
+  // when a song finishes, move to the next one; loop back to the start
+  // of the playlist after the last one
+  track.addEventListener("ended", () => {
+    queueIndex = (queueIndex + 1) % queue.length;
+    track.src = queue[queueIndex];
+    track.volume = CONFIG.music.volume;
+    track.play().catch(() => {});
+  });
 }
 
 function fadeIn(){
